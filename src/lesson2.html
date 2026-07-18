@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout Example 3 — Responsive with Tailwind CSS</title>
+  <!-- Tailwind via CDN: quickest way to try Tailwind with no build tools -->
+  <link href="./output.css"  rel="stylesheet">
+</head>
+<body class="text-gray-800">
+
+  <!-- ---------- HEADER ---------- -->
+  <header class="bg-indigo-900 text-white px-6 py-5">
+    <h1 class="text-5xl text-center text-blue-900 font-bold">My Website</h1>
+  </header>
+
+  <!--
+    LAYOUT WRAPPER
+    flex-col          -> stacked (sidebar above main) by default, on small screens
+    md:flex-row       -> side-by-side once the screen is "md" size (768px) or wider
+//this line is like this
+//flex flex-col md:flex-row
+    .container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+}
+  -->
+  <div class="flex flex-col md:flex-row">
+
+    <!-- ---------- SIDEBAR ---------- -->
+    <!-- w-full on mobile, fixed md:w-64 (16rem) once side-by-side -->
+    <aside class="w-full md:w-64 bg-amber-100 p-5 flex-shrink-0">
+      <ul class="space-y-3">
+        <li><a href="#" class="font-bold text-indigo-900 hover:underline">Home</a></li>
+        <li><a href="#" class="font-bold text-indigo-900 hover:underline">About</a></li>
+        <li><a href="#" class="font-bold text-indigo-900 hover:underline">Services</a></li>
+        <li><a href="#" class="font-bold text-indigo-900 hover:underline">Contact</a></li>
+      </ul>
+    </aside>
+
+    <!-- ---------- MAIN CONTENT ---------- -->
+    <main class="flex-1 p-6 md:p-8">
+      <h2 class="text-xl font-bold mb-3">Welcome!</h2>
+      <p class="leading-relaxed mb-3">
+        This layout uses only Tailwind's utility classes &mdash; no separate CSS file at all.
+      </p>
+      <p class="leading-relaxed">
+        Resize your browser window: below Tailwind's <code class="bg-gray-100 px-1 rounded">md</code>
+        breakpoint (768px) the layout switches to <code class="bg-gray-100 px-1 rounded">flex-col</code>
+        and the sidebar stacks on top of the main content. At <code class="bg-gray-100 px-1 rounded">md</code>
+        and above, <code class="bg-gray-100 px-1 rounded">md:flex-row</code> takes over and they sit
+        side by side again &mdash; all without writing a single <code class="bg-gray-100 px-1 rounded">@media</code> rule.
+      </p>
+    </main>
+  </div>
+
+  <!-- ---------- FOOTER ---------- -->
+  <footer class="bg-indigo-950 text-white text-center py-4">
+    <p>&copy; 2026 My Website. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
