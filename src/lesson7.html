@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Same viewport tag as always — required for Tailwind's responsive
+       prefixes (md:, lg:, etc.) to work correctly on real phones. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CodeCamp — Learn to Code (Tailwind Version)</title>
+
+  <!-- This is YOUR compiled file — the one the Tailwind CLI builds from
+       input.css. It contains every Tailwind utility class used below,
+       plus the custom --color-brand / --font-family-sans tokens. -->
+  <link rel="stylesheet" href="output.css">
+</head>
+
+<!--
+  body classes:
+  font-sans   -> uses OUR custom font stack, defined as --font-family-sans in input.css
+  text-ink    -> our custom near-black text color, defined as --color-ink in input.css
+-->
+<body class="font-sans text-ink">
+
+  <!-- =========================================================
+       HEADER + HORIZONTAL NAV
+       sticky top-0    -> pins the header to the top of the screen when scrolling
+       z-50            -> keeps it above other content while scrolling
+       bg-white        -> white background
+       border-b        -> a thin bottom border line
+       border-gray-200 -> light gray color for that border
+  ========================================================== -->
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-200 relative">
+
+    <!--
+      max-w-[1100px]  -> caps the content width so it doesn't stretch edge-to-edge on huge screens
+      mx-auto         -> centers this div horizontally (auto margins left & right)
+      px-4            -> small side padding on phones (16px)
+      sm:px-6         -> a bit more once we're at "sm" (640px) and up (24px)
+      lg:px-8         -> even more breathing room on large screens (32px)
+                          — this is what actually makes the gutters "flexible":
+                          they scale WITH the screen instead of staying a flat 24px always
+      py-4            -> top/bottom padding
+      flex            -> lays out logo + nav side by side
+      items-center    -> vertically centers them
+      justify-between -> pushes logo to the left, nav to the right
+      flex-wrap       -> lets the nav drop to a new line if it runs out of room
+      gap-3           -> spacing if it wraps
+    -->
+    <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between flex-wrap gap-3">
+
+      <!-- text-xl font-extrabold text-brand -> big bold logo in our brand purple -->
+      <div class="text-xl font-extrabold text-brand">CodeCamp</div>
+
+      <!-- =========================================================
+           HAMBURGER MENU (new — mobile only)
+           This uses the "checkbox hack": a hidden checkbox plus a
+           <label> styled as the hamburger icon. Clicking the label
+           toggles the checkbox — NO JavaScript required. Tailwind's
+           "peer" + "peer-checked:" utilities then let the mobile
+           menu panel react to that checkbox further down the page.
+      ========================================================== -->
+
+      <!-- The checkbox itself is invisible (hidden) — it just holds
+           the open/closed STATE. "peer" marks it so later siblings
+           can use peer-checked: to react to it. -->
+      <input type="checkbox" id="mobile-menu-toggle" class="peer hidden">
+
+      <!-- The visible hamburger button.
+           md:hidden      -> only ever shows on mobile/tablet, never on desktop
+           flex flex-col gap-1.5 -> stacks the 3 bars vertically with even spacing
+           cursor-pointer -> shows a clickable hand cursor
+           A <label for="..."> pointing at the checkbox above means
+           clicking this button toggles that checkbox automatically. -->
+      <label for="mobile-menu-toggle" class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 z-50">
+        <span class="w-6 h-0.5 bg-ink rounded-full"></span>
+        <span class="w-6 h-0.5 bg-ink rounded-full"></span>
+        <span class="w-6 h-0.5 bg-ink rounded-full"></span>
+      </label>
+
+      <!-- flex gap-7 -> lays nav links out horizontally with spacing between them
+           gap-4 sm:gap-7 -> tighter spacing on the smallest phones, roomier from "sm" up
+           flex-wrap -> lets the links wrap onto a second line on very narrow screens
+                        instead of forcing the page to scroll sideways
+           hidden md:flex -> (new) this is the ORIGINAL desktop nav — now hidden on
+                        mobile/tablet, and only shown from "md" (768px) upward, since
+                        mobile screens use the new hamburger panel below instead -->
+      <nav class="hidden md:flex items-center flex-wrap gap-4 sm:gap-7 font-semibold text-sm">
+        <a href="#home" class="hover:text-brand">Home</a>
+        <!-- =========================================================
+             COURSES DROPDOWN (new)
+             group + relative -> this wrapper is the "hover zone."
+                                   "group" lets the child panel below
+                                   react to hovering ANYWHERE in this div.
+             The dropdown itself needs NO JavaScript — it's pure
+             Tailwind, using group-hover to show/hide on mouse hover.
+        ========================================================== -->
+        <div class="relative group">
+
+          <!-- The visible "Courses" trigger link, same style as the others,
+               plus a small ▾ arrow so it visually reads as a dropdown -->
+          <a href="#features" class="hover:text-brand cursor-pointer inline-flex items-center gap-1">
+            Courses
+            <span aria-hidden="true" class="text-xs">&#9662;</span>
+          </a>
+
+          <!--
+            THE DROPDOWN PANEL
+            absolute left-0 top-full mt-2  -> positions it directly below the "Courses" link
+            w-56                            -> fixed panel width
+            bg-white border rounded-lg shadow-lg -> a clean floating card look
+            opacity-0 invisible             -> HIDDEN by default
+            group-hover:opacity-100
+            group-hover:visible             -> becomes visible only while hovering
+                                                the wrapper div above (".group")
+            transition-all duration-200     -> fades in/out smoothly instead of popping
+            z-50                            -> floats above the hero/content below it
+          -->
+          <div class="absolute left-0 top-full mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg
+                      opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                      transition-all duration-200 z-50">
+            <a href="#" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand">Computer Science</a>
+            <a href="#" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand">C++</a>
+            <a href="#" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand">Frontend Development</a>
+          </div>
+        </div>
+        <a href="#about" class="hover:text-brand">About</a>
+
+        <!--
+          The "Get Started" pill button:
+          bg-brand         -> our custom purple background
+          text-white       -> white text
+          px-5 py-2.5      -> horizontal/vertical padding so it feels like a real button
+          rounded-full     -> fully rounded pill shape
+          hover:bg-brand-dark -> darker purple on hover
+        -->
+        <a href="#contact" class="bg-brand text-white px-5 py-2.5 rounded-full font-bold hover:bg-brand-dark">
+          Get Started
+        </a>
+      </nav>
+
+      <!-- =========================================================
+           MOBILE MENU PANEL (new)
+           This is a SEPARATE nav, shown only on mobile, containing
+           the same links as the desktop nav above (flattened, since
+           there's no hover on a touchscreen).
+
+           hidden                 -> closed by default
+           peer-checked:flex      -> the magic link to the checkbox:
+                                      once #mobile-menu-toggle is checked,
+                                      this switches from "hidden" to "flex"
+           md:hidden              -> guarantees this NEVER shows on desktop,
+                                      even if the checkbox were somehow checked
+           absolute top-full left-0 w-full -> drops down, spanning the
+                                      full width, directly below the header
+           flex-col               -> stacks every link vertically
+      ========================================================== -->
+      <nav class="hidden peer-checked:flex md:hidden absolute top-full left-0 w-full
+                  bg-white border-t border-gray-200 flex-col gap-1 p-4
+                  font-semibold text-sm z-40">
+
+        <a href="#home" class="px-2 py-2 rounded hover:bg-gray-50 hover:text-brand">Home</a>
+
+        <!-- Courses + its 3 links, simply listed (indented) since there's
+             no hover-triggered dropdown needed on a touchscreen -->
+        <span class="px-2 pt-2 text-xs uppercase tracking-wide text-gray-400">Courses</span>
+        <a href="#" class="px-4 py-2 rounded hover:bg-gray-50 hover:text-brand">Computer Science</a>
+        <a href="#" class="px-4 py-2 rounded hover:bg-gray-50 hover:text-brand">C++</a>
+        <a href="#" class="px-4 py-2 rounded hover:bg-gray-50 hover:text-brand">Frontend Development</a>
+
+        <a href="#about" class="px-2 py-2 rounded hover:bg-gray-50 hover:text-brand">About</a>
+
+        <a href="#contact" class="bg-brand text-white text-center px-5 py-2.5 rounded-full font-bold hover:bg-brand-dark mt-2">
+          Get Started
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =========================================================
+         HERO SECTION — now with a full-screen background photo
+         from Pexels (free to use, no attribution required).
+
+         min-h-screen         -> forces the section to be AT LEAST
+                                  the full height of the browser
+                                  window (100vh), so the photo
+                                  covers the whole visible screen
+         bg-[url('...')]      -> Tailwind's "arbitrary value" syntax:
+                                  lets us drop in any CSS value —
+                                  here, a real image URL — without
+                                  needing to touch input.css
+         bg-cover             -> scales the image so it always fills
+                                  the entire section with no gaps
+                                  (may crop the edges slightly)
+         bg-center            -> keeps the image centered as it's cropped
+         bg-no-repeat         -> stops the image from tiling/repeating
+         relative              -> lets the dark overlay div (below)
+                                  and text sit ON TOP of the image
+    ========================================================== -->
+    <section id="home"
+      class="relative min-h-screen flex items-center justify-center
+             bg-[url('https://images.pexels.com/photos/3862142/pexels-photo-3862142.jpeg?auto=compress&cs=tinysrgb&w=1920')]
+             bg-cover bg-center bg-no-repeat px-4 sm:px-6 lg:px-8">
+
+      <!-- DARK OVERLAY
+           A photo alone often makes white text hard to read.
+           This invisible div sits directly on top of the image
+           (absolute inset-0 = stretched to fill the whole section)
+           and adds a 50%-transparent black tint over it. -->
+      <div class="absolute inset-0 bg-black/50"></div>
+
+      <!-- CONTENT WRAPPER
+           relative + z-10 lifts this content ABOVE the overlay div,
+           otherwise the overlay would sit on top and hide it. -->
+      <div class="relative z-10 text-center text-white">
+
+        <h1 class="text-4xl md:text-5xl font-bold mb-5">
+          Learn to Code. Build Anything.
+        </h1>
+
+        <!-- text-gray-200 (a light gray, not pure white) keeps the
+             paragraph easy to read without competing with the heading -->
+        <p class="text-lg text-gray-200 max-w-xl mx-auto mb-8">
+          Join thousands of students learning HTML, CSS, and JavaScript through fun,
+          hands-on projects — no experience needed.
+        </p>
+
+        <a href="#contact"
+           class="inline-block bg-brand text-white px-8 py-3.5 rounded-full font-bold hover:bg-brand-dark">
+          Start Learning Free
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ARTICLES SECTION (NEW — added below the hero)
+         Same responsive pattern as the Features section below it:
+         grid-cols-1        -> ONE column, stacked, on phones
+         md:grid-cols-3     -> THREE columns side by side at 768px+
+         Each <article> is its own card: an image on top, then a
+         title, a short excerpt, and a "Read More" link at the bottom.
+    ========================================================== -->
+    <section id="articles" class="px-4 sm:px-6 lg:px-8 py-20">
+      <div class="max-w-[1100px] mx-auto">
+
+        <h2 class="text-center text-3xl font-bold mb-3">From the Blog</h2>
+        <p class="text-center text-gray-500 max-w-md mx-auto mb-12">
+          Tips, stories, and lessons from our students and instructors.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+
+          <!--
+            Each article card:
+            bg-gray-50 border rounded-2xl  -> same card style as the Features section, for consistency
+            overflow-hidden                -> keeps the image's corners rounded to match the card
+            flex flex-col                  -> stacks image/title/excerpt/button vertically
+          -->
+          <article class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden flex flex-col">
+            <!-- w-full h-48 object-cover -> image always fills this box at a fixed height,
+                 cropping if needed, so all 3 cards line up evenly no matter the photo's shape -->
+            <img src="https://images.pexels.com/photos/574077/pexels-photo-574077.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 alt="Person coding HTML on a laptop screen"
+                 class="w-full h-48 object-cover">
+
+            <!-- p-6 flex-1 flex flex-col -> padding inside the card, and flex-1 lets this
+                 area stretch so all 3 "Read More" links line up at the same height -->
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="font-semibold text-lg mb-2">5 Tips to Learn HTML Faster</h3>
+              <p class="text-gray-500 text-sm mb-4 flex-1">
+                Simple daily habits that helped past students go from confused
+                to confident with tags, structure, and semantic HTML.
+              </p>
+              <!-- inline-flex items-center gap-1 -> puts the arrow right next to the text
+                   hover:gap-2 transition-all      -> the arrow nudges further right on hover,
+                                                       a small playful "read more" cue -->
+              <a href="#" class="inline-flex items-center gap-1 text-brand font-semibold text-sm hover:gap-2 transition-all">
+                Read More <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden flex flex-col">
+            <img src="https://images.pexels.com/photos/3861951/pexels-photo-3861951.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 alt="Student working on code in a modern office setting"
+                 class="w-full h-48 object-cover">
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="font-semibold text-lg mb-2">Why Semantic HTML Matters</h3>
+              <p class="text-gray-500 text-sm mb-4 flex-1">
+                Tags like &lt;header&gt; and &lt;main&gt; aren't just style —
+                they help screen readers, search engines, and your teammates.
+              </p>
+              <a href="#" class="inline-flex items-center gap-1 text-brand font-semibold text-sm hover:gap-2 transition-all">
+                Read More <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden flex flex-col">
+            <img src="https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=800"
+                 alt="Laptop screen displaying code with a soft reflection"
+                 class="w-full h-48 object-cover">
+            <div class="p-6 flex-1 flex flex-col">
+              <h3 class="font-semibold text-lg mb-2">From Beginner to Deployed</h3>
+              <p class="text-gray-500 text-sm mb-4 flex-1">
+                One student's 3-day journey from her first &lt;div&gt; to a
+                live website, published with Vercel.
+              </p>
+              <a href="#" class="inline-flex items-center gap-1 text-brand font-semibold text-sm hover:gap-2 transition-all">
+                Read More <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FEATURES SECTION
+         grid-cols-1        -> ONE column by default (phones)
+         md:grid-cols-3     -> THREE columns once screen is 768px or wider
+         gap-7              -> spacing between the cards
+         This single class swap (1 column -> 3 columns) is the
+         entire "responsive layout" for this section — no
+         @media query needed at all!
+    ========================================================== -->
+    <section id="features" class="px-4 sm:px-6 lg:px-8 py-20">
+      <div class="max-w-[1100px] mx-auto">
+
+        <h2 class="text-center text-3xl font-bold mb-3">Why Learn With Us?</h2>
+        <p class="text-center text-gray-500 max-w-md mx-auto mb-12">
+          Everything you need to go from beginner to confident web developer.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+
+          <!-- Each card: soft gray background, border, rounded corners, centered text -->
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center">
+            <div class="text-4xl mb-3">🧱</div>
+            <h3 class="font-semibold text-lg mb-2">Structured Lessons</h3>
+            <p class="text-gray-500 text-sm">Bite-sized lessons that build on each other, step by step.</p>
+          </div>
+
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center">
+            <div class="text-4xl mb-3">🎨</div>
+            <h3 class="font-semibold text-lg mb-2">Real Projects</h3>
+            <p class="text-gray-500 text-sm">Practice on real websites and apps, not just quizzes.</p>
+          </div>
+
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center">
+            <div class="text-4xl mb-3">🚀</div>
+            <h3 class="font-semibold text-lg mb-2">Ship It Live</h3>
+            <p class="text-gray-500 text-sm">Deploy your own projects to the internet by the end of the course.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CALL-TO-ACTION BANNER
+         bg-brand      -> solid brand-purple background (no gradient this time)
+         text-white    -> readable text on the dark background
+    ========================================================== -->
+    <section id="about" class="bg-brand text-white text-center px-4 sm:px-6 lg:px-8 py-16">
+      <h2 class="text-2xl font-bold mb-5">Ready to start building?</h2>
+      <a href="#contact"
+         class="inline-block bg-white text-brand px-8 py-3.5 rounded-full font-bold hover:bg-indigo-50">
+        Join CodeCamp Today
+      </a>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       bg-ink            -> our custom near-black color from input.css
+       text-gray-300     -> soft light-gray text so it's readable but not stark white
+       pt-16 px-4 sm:px-6 lg:px-8 pb-6   -> generous top padding, side padding that
+                                             SCALES with screen size, smaller bottom padding
+  ========================================================== -->
+  <footer id="contact" class="bg-ink text-gray-300 px-4 sm:px-6 lg:px-8 pt-16 pb-6">
+    <div class="max-w-[1100px] mx-auto">
+
+      <!--
+        flex-col            -> stacked columns by default (phones)
+        md:flex-row         -> side-by-side columns once screen is 768px+
+        justify-between     -> spreads the 3 columns apart on desktop
+        flex-wrap gap-8     -> safety net spacing if anything wraps
+        mb-10               -> margin before the copyright line
+      -->
+      <div class="flex flex-col md:flex-row justify-between flex-wrap gap-8 mb-10">
+
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-3">CodeCamp</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white">Our Story</a></li>
+            <li><a href="#" class="hover:text-white">Instructors</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-3">Courses</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white">HTML &amp; CSS</a></li>
+            <li><a href="#" class="hover:text-white">JavaScript</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-3">Support</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white">Contact Us</a></li>
+            <li><a href="#" class="hover:text-white">FAQ</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- text-center text-xs -> small centered copyright line
+           pt-5 border-t border-gray-700 -> a thin divider line above it -->
+      <div class="text-center text-xs pt-5 border-t border-gray-700 text-gray-400">
+        &copy; 2026 CodeCamp. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

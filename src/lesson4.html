@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Same viewport tag as always — required for Tailwind's responsive
+       prefixes (md:, lg:, etc.) to work correctly on real phones. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CodeCamp — Learn to Code (Tailwind Version)</title>
+
+  <!-- This is YOUR compiled file — the one the Tailwind CLI builds from
+       input.css. It contains every Tailwind utility class used below,
+       plus the custom --color-brand / --font-family-sans tokens. -->
+  <link rel="stylesheet" href="output.css">
+</head>
+
+<!--
+  body classes:
+  font-sans   -> uses OUR custom font stack, defined as --font-family-sans in input.css
+  text-ink    -> our custom near-black text color, defined as --color-ink in input.css
+-->
+<body class="font-sans text-ink">
+
+  <!-- =========================================================
+       HEADER + HORIZONTAL NAV
+       sticky top-0    -> pins the header to the top of the screen when scrolling
+       z-50            -> keeps it above other content while scrolling
+       bg-white        -> white background
+       border-b        -> a thin bottom border line
+       border-gray-200 -> light gray color for that border
+  ========================================================== -->
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+
+    <!--
+      max-w-[1100px]  -> caps the content width so it doesn't stretch edge-to-edge on huge screens
+      mx-auto         -> centers this div horizontally (auto margins left & right)
+      px-4            -> small side padding on phones (16px)
+      sm:px-6         -> a bit more once we're at "sm" (640px) and up (24px)
+      lg:px-8         -> even more breathing room on large screens (32px)
+                          — this is what actually makes the gutters "flexible":
+                          they scale WITH the screen instead of staying a flat 24px always
+      py-4            -> top/bottom padding
+      flex            -> lays out logo + nav side by side
+      items-center    -> vertically centers them
+      justify-between -> pushes logo to the left, nav to the right
+      flex-wrap       -> lets the nav drop to a new line if it runs out of room
+      gap-3           -> spacing if it wraps
+    -->
+    <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between flex-wrap gap-3">
+
+      <!-- text-xl font-extrabold text-brand -> big bold logo in our brand purple -->
+      <div class="text-xl font-extrabold text-brand">CodeCamp</div>
+
+      <!-- flex gap-7 -> lays nav links out horizontally with spacing between them
+           gap-4 sm:gap-7 -> tighter spacing on the smallest phones, roomier from "sm" up
+           flex-wrap -> lets the links wrap onto a second line on very narrow screens
+                        instead of forcing the page to scroll sideways -->
+      <nav class="flex items-center flex-wrap gap-4 sm:gap-7 font-semibold text-sm">
+        <a href="#home" class="hover:text-brand">Home</a>
+        <a href="#features" class="hover:text-brand">Courses</a>
+        <a href="#about" class="hover:text-brand">About</a>
+
+        <!--
+          The "Get Started" pill button:
+          bg-brand         -> our custom purple background
+          text-white       -> white text
+          px-5 py-2.5      -> horizontal/vertical padding so it feels like a real button
+          rounded-full     -> fully rounded pill shape
+          hover:bg-brand-dark -> darker purple on hover
+        -->
+        <a href="#contact" class="bg-brand text-white px-5 py-2.5 rounded-full font-bold hover:bg-brand-dark">
+          Get Started
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =========================================================
+         HERO SECTION — now with a full-screen background photo
+         from Pexels (free to use, no attribution required).
+
+         min-h-screen         -> forces the section to be AT LEAST
+                                  the full height of the browser
+                                  window (100vh), so the photo
+                                  covers the whole visible screen
+         bg-[url('...')]      -> Tailwind's "arbitrary value" syntax:
+                                  lets us drop in any CSS value —
+                                  here, a real image URL — without
+                                  needing to touch input.css
+         bg-cover             -> scales the image so it always fills
+                                  the entire section with no gaps
+                                  (may crop the edges slightly)
+         bg-center            -> keeps the image centered as it's cropped
+         bg-no-repeat         -> stops the image from tiling/repeating
+         relative              -> lets the dark overlay div (below)
+                                  and text sit ON TOP of the image
+    ========================================================== -->
+    <section id="home"
+      class="relative min-h-screen flex items-center justify-center
+             bg-[url('https://images.pexels.com/photos/3862142/pexels-photo-3862142.jpeg?auto=compress&cs=tinysrgb&w=1920')]
+             bg-cover bg-center bg-no-repeat px-4 sm:px-6 lg:px-8">
+
+      <!-- DARK OVERLAY
+           A photo alone often makes white text hard to read.
+           This invisible div sits directly on top of the image
+           (absolute inset-0 = stretched to fill the whole section)
+           and adds a 50%-transparent black tint over it. -->
+      <div class="absolute inset-0 bg-black/50"></div>
+
+      <!-- CONTENT WRAPPER
+           relative + z-10 lifts this content ABOVE the overlay div,
+           otherwise the overlay would sit on top and hide it. -->
+      <div class="relative z-10 text-center text-white">
+
+        <h1 class="text-4xl md:text-5xl font-bold mb-5">
+          Learn to Code. Build Anything.
+        </h1>
+
+        <!-- text-gray-200 (a light gray, not pure white) keeps the
+             paragraph easy to read without competing with the heading -->
+        <p class="text-lg text-gray-200 max-w-xl mx-auto mb-8">
+          Join thousands of students learning HTML, CSS, and JavaScript through fun,
+          hands-on projects — no experience needed.
+        </p>
+
+        <a href="#contact"
+           class="inline-block bg-brand text-white px-8 py-3.5 rounded-full font-bold hover:bg-brand-dark">
+          Start Learning Free
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FEATURES SECTION
+         grid-cols-1        -> ONE column by default (phones)
+         md:grid-cols-3     -> THREE columns once screen is 768px or wider
+         gap-7              -> spacing between the cards
+         This single class swap (1 column -> 3 columns) is the
+         entire "responsive layout" for this section — no
+         @media query needed at all!
+    ========================================================== -->
+    <section id="features" class="px-4 sm:px-6 lg:px-8 py-20">
+      <div class="max-w-[1100px] mx-auto">
+
+        <h2 class="text-center text-3xl font-bold mb-3">Why Learn With Us?</h2>
+        <p class="text-center text-gray-500 max-w-md mx-auto mb-12">
+          Everything you need to go from beginner to confident web developer.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+
+          <!-- Each card: soft gray background, border, rounded corners, centered text -->
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center">
+            <div class="text-4xl mb-3">🧱</div>
+            <h3 class="font-semibold text-lg mb-2">Structured Lessons</h3>
+            <p class="text-gray-500 text-sm">Bite-sized lessons that build on each other, step by step.</p>
+          </div>
+
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center">
+            <div class="text-4xl mb-3">🎨</div>
+            <h3 class="font-semibold text-lg mb-2">Real Projects</h3>
+            <p class="text-gray-500 text-sm">Practice on real websites and apps, not just quizzes.</p>
+          </div>
+
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 text-center">
+            <div class="text-4xl mb-3">🚀</div>
+            <h3 class="font-semibold text-lg mb-2">Ship It Live</h3>
+            <p class="text-gray-500 text-sm">Deploy your own projects to the internet by the end of the course.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CALL-TO-ACTION BANNER
+         bg-brand      -> solid brand-purple background (no gradient this time)
+         text-white    -> readable text on the dark background
+    ========================================================== -->
+    <section id="about" class="bg-brand text-white text-center px-4 sm:px-6 lg:px-8 py-16">
+      <h2 class="text-2xl font-bold mb-5">Ready to start building?</h2>
+      <a href="#contact"
+         class="inline-block bg-white text-brand px-8 py-3.5 rounded-full font-bold hover:bg-indigo-50">
+        Join CodeCamp Today
+      </a>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       bg-ink            -> our custom near-black color from input.css
+       text-gray-300     -> soft light-gray text so it's readable but not stark white
+       pt-16 px-4 sm:px-6 lg:px-8 pb-6   -> generous top padding, side padding that
+                                             SCALES with screen size, smaller bottom padding
+  ========================================================== -->
+  <footer id="contact" class="bg-ink text-gray-300 px-4 sm:px-6 lg:px-8 pt-16 pb-6">
+    <div class="max-w-[1100px] mx-auto">
+
+      <!--
+        flex-col            -> stacked columns by default (phones)
+        md:flex-row         -> side-by-side columns once screen is 768px+
+        justify-between     -> spreads the 3 columns apart on desktop
+        flex-wrap gap-8     -> safety net spacing if anything wraps
+        mb-10               -> margin before the copyright line
+      -->
+      <div class="flex flex-col md:flex-row justify-between flex-wrap gap-8 mb-10">
+
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-3">CodeCamp</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white">Our Story</a></li>
+            <li><a href="#" class="hover:text-white">Instructors</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-3">Courses</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white">HTML &amp; CSS</a></li>
+            <li><a href="#" class="hover:text-white">JavaScript</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-3">Support</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white">Contact Us</a></li>
+            <li><a href="#" class="hover:text-white">FAQ</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- text-center text-xs -> small centered copyright line
+           pt-5 border-t border-gray-700 -> a thin divider line above it -->
+      <div class="text-center text-xs pt-5 border-t border-gray-700 text-gray-400">
+        &copy; 2026 CodeCamp. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
