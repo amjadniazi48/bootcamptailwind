@@ -1,1 +1,44 @@
+/* =========================================================
+   1. IMPORT TAILWIND
+   In Tailwind v4 this ONE line replaces the old v3 trio of
+   @tailwind base; @tailwind components; @tailwind utilities;
+   It pulls in every Tailwind utility class (flex, grid, p-4,
+   text-center, etc.) so they're ready to use in your HTML.
+========================================================== */
 @import "tailwindcss";
+
+/* =========================================================
+   2. @theme — YOUR CUSTOM DESIGN TOKENS
+   This is Tailwind v4's big change: instead of a separate
+   tailwind.config.js file, you define your project's fonts,
+   colors, spacing, etc. right here as CSS variables.
+
+   The naming pattern matters! Tailwind auto-generates utility
+   classes FROM these variable names:
+
+     --font-family-{name}   ->  font-{name}       (e.g. font-sans)
+     --color-{name}         ->  bg-{name}, text-{name},
+                                 border-{name}, from-{name}, to-{name}...
+
+   So everything below becomes real, usable classes in your HTML.
+========================================================== */
+@theme {
+
+  /* ---- FONT ----
+     Overrides Tailwind's default "font-sans" utility to use
+     our own font stack instead of its built-in system font. */
+  --font-family-sans: "Segoe UI", Arial, sans-serif;
+
+  /* ---- BRAND COLORS ----
+     These create: bg-brand, text-brand, border-brand, hover:bg-brand, etc. */
+  --color-brand: #4338ca;       /* main purple used for buttons, links, logo */
+  --color-brand-dark: #362eab;  /* darker shade for hover states */
+
+  /* ---- HERO GRADIENT COLORS ----
+     Used with Tailwind's gradient utilities: from-cream, to-blush */
+  --color-cream: #eef0ff;
+  --color-blush: #fdf2f8;
+
+  /* ---- TEXT / BACKGROUND SHADES ---- */
+  --color-ink: #1e2438;         /* near-black, used for headings and the footer background */
+}
