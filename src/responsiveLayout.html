@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Semantic Tutorial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        section,
+        article,
+        aside {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #999;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        form input,
+        form textarea,
+        form select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+        }
+
+        /* ===========================
+   GRID IMAGE GALLERY
+=========================== */
+
+        .grid-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .grid-gallery figure {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .grid-gallery img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .grid-gallery figcaption {
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        @media(max-width:768px) {
+
+            nav ul {
+                flex-direction: column;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+
+            <h1>HTML5 Semantic Elements Tutorial</h1>
+
+            <p>
+                Learn HTML5 using semantic elements.
+            </p>
+
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section>
+
+            <h2>Introduction</h2>
+
+            <p>
+                HTML stands for
+                <abbr title="HyperText Markup Language">HTML</abbr>.
+                It is used to create web pages.
+            </p>
+
+            <p>
+                This is <strong>bold text</strong>,
+                this is <em>italic text</em>,
+                this is <mark>highlighted</mark>,
+                and this is <small>small text</small>.
+            </p>
+
+            <time datetime="2026-07-20">
+                20 July 2026
+            </time>
+
+        </section>
+
+        <section>
+
+            <h2>Responsive Image Gallery (CSS Grid)</h2>
+
+            <div class="grid-gallery">
+
+                <figure>
+                    <img src="https://picsum.photos/400/300?random=1" alt="Image 1">
+                    <figcaption>Mountain</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="https://picsum.photos/400/300?random=2" alt="Image 2">
+                    <figcaption>River</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="https://picsum.photos/400/300?random=3" alt="Image 3">
+                    <figcaption>Forest</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="https://picsum.photos/400/300?random=4" alt="Image 4">
+                    <figcaption>Beach</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="https://picsum.photos/400/300?random=5" alt="Image 5">
+                    <figcaption>Sunset</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="https://picsum.photos/400/300?random=6" alt="Image 6">
+                    <figcaption>Waterfall</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://picsum.photos/400/300?random=6" alt="Image 6">
+                    <figcaption>Waterfall</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://picsum.photos/400/300?random=6" alt="Image 6">
+                    <figcaption>Waterfall</figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+        <h2>Lists</h2>
+
+        <h3>Unordered List</h3>
+
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ul>
+
+        <h3>Ordered List</h3>
+
+        <ol>
+            <li>Open VS Code</li>
+            <li>Create HTML File</li>
+            <li>Run in Browser</li>
+        </ol>
+
+        </section>
+
+        <article>
+
+            <h2>Article</h2>
+
+            <p>
+                An article represents independent content such as a blog post or news article.
+            </p>
+
+            <blockquote>
+                "The beautiful thing about learning is that nobody can take it away from you."
+            </blockquote>
+
+        </article>
+
+        <aside>
+
+            <h2>Aside</h2>
+
+            <p>
+                This section contains related information such as tips or advertisements.
+            </p>
+
+        </aside>
+
+        <section>
+
+            <h2>Student Table</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Marks</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Ali</td>
+                        <td>HTML</td>
+                        <td>90</td>
+                    </tr>
+
+                    <tr>
+                        <td>Sara</td>
+                        <td>CSS</td>
+                        <td>85</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ahmed</td>
+                        <td>JavaScript</td>
+                        <td>88</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+        <section>
+            <h2>Code Example</h2>
+            <pre>
+                    <code>
+                    &lt;h1&gt;Hello World&lt;/h1&gt;
+                    </code>
+            </pre>
+        </section>
+        <section>
+
+            <h2>Registration Form</h2>
+
+            <form>
+
+                <label>Name</label>
+                <input type="text" placeholder="Enter Name">
+
+                <label>Email</label>
+                <input type="email" placeholder="Enter Email">
+
+                <label>Course</label>
+
+                <select>
+
+                    <option>HTML</option>
+                    <option>CSS</option>
+                    <option>JavaScript</option>
+
+                </select>
+
+                <label>Message</label>
+
+                <textarea rows="5"></textarea>
+
+                <button type="submit">
+                    Submit
+                </button>
+
+            </form>
+
+        </section>
+
+        <section>
+
+            <details>
+
+                <summary>
+                    Click to Read More
+                </summary>
+
+                <p>
+                    The details element allows users to expand and collapse content.
+                </p>
+
+            </details>
+
+        </section>
+
+        <hr>
+
+        <section>
+
+            <h2>Useful Link</h2>
+
+            <p>
+                Visit
+                <a href="https://developer.mozilla.org" target="_blank">
+                    MDN Web Docs
+                </a>
+                for more tutorials.
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <address>
+
+            Virtual University Tutorial Academy<br>
+            Islamabad, Pakistan
+
+        </address>
+        <p>
+            &copy; 2026 HTML Tutorial
+        </p>
+    </footer>
+
+</body>
+
+</html>
