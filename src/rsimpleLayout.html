@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive HTML5 Layout</title>
+/*===============================================
+The parent (.content) is a flex container.
+
+display:flex;
+
+This places the children (aside and main) side by side.
+
+Now look at:
+
+aside{
+    flex:1;
+}
+
+main{
+    flex:3;
+}
+
+It means:
+
+Sidebar gets 1 part.
+Main content gets 3 parts.
+
+Total parts = 1 + 3 = 4
+
+So:
+
+Sidebar = 1/4 (25%)
+Main = 3/4 (75%)
+
+Visually:
+
++--------------------------------------+
+| Sidebar |       Main Content         |
+|   25%   |           75%              |
++--------------------------------------+
+
+================================================================*/
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f4f4;
+            line-height:1.6;
+        }
+
+        .container{
+            max-width:1000px;
+            width:95%;
+            margin:20px auto;
+            border:2px solid #333;
+            background:#fff;
+        }
+
+        header{
+            background:#2c3e50;
+            color:#fff;
+            padding:20px;
+            text-align:center;
+        }
+
+        nav{
+            background:#34495e;
+            padding:15px;
+        }
+
+        nav ul{
+            list-style:none;
+            display:flex;
+            flex-wrap:wrap;
+            gap:20px;
+            justify-content:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+        }
+
+        .content{
+            display:flex;
+            gap:20px;
+            padding:20px;
+        }
+
+        aside{
+            flex:1;
+            background:#dfe6e9;
+            padding:20px;
+            min-width:220px;
+        }
+
+        aside ul{
+            list-style:none;
+            margin-top:15px;
+        }
+
+        aside li{
+            margin-bottom:10px;
+        }
+
+        aside a{
+            text-decoration:none;
+            color:#2c3e50;
+        }
+
+        main{
+            flex:3;
+        }
+
+        article,
+        section{
+            border:1px solid #ccc;
+            padding:20px;
+            margin-bottom:20px;
+            background:white;
+        }
+
+        footer{
+            background:#2c3e50;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        img{
+            max-width:100%;
+            height:auto;
+        }
+
+        /* ======================
+           Responsive Design
+
+           If the screen width is 768 pixels or smaller, apply these CSS rules.
+        ====================== */
+
+        @media (max-width:768px){
+
+            .content{
+                flex-direction:column;
+            }
+       /* Make Both Sections Full Width when screen size is equal to or less than 786 */
+            aside,
+            main{
+                width:100%;
+            }
+            nav ul{
+                flex-direction:column;
+                align-items:center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>My Website</h1>
+        <p>Responsive HTML5 Semantic Layout</p>
+    </header>
+
+    <nav>
+
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+    </nav>
+
+    <div class="content">
+
+        <aside>
+
+            <h2>Sidebar</h2>
+
+            <ul>
+                <li><a href="#">HTML Tutorial</a></li>
+                <li><a href="#">CSS Tutorial</a></li>
+                <li><a href="#">JavaScript Tutorial</a></li>
+                <li><a href="#">Bootstrap</a></li>
+                <li><a href="#">React</a></li>
+            </ul>
+
+        </aside>
+
+        <main>
+
+            <article>
+
+                <h2>Welcome</h2>
+
+                <p>
+                    This is the main content area of the webpage.
+                    On larger screens, it appears beside the sidebar.
+                    On smaller screens, it automatically moves below the sidebar.
+                </p>
+
+            </article>
+
+            <section>
+
+                <h2>Latest News</h2>
+
+                <p>
+                    HTML5 provides semantic elements such as
+                    <strong>header</strong>,
+                    <strong>nav</strong>,
+                    <strong>main</strong>,
+                    <strong>article</strong>,
+                    <strong>section</strong>,
+                    <strong>aside</strong>, and
+                    <strong>footer</strong>.
+                </p>
+
+            </section>
+
+            <section>
+
+                <h2>Upcoming Events</h2>
+
+                <ul>
+                    <li>HTML Workshop</li>
+                    <li>CSS Seminar</li>
+                    <li>JavaScript Bootcamp</li>
+                </ul>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <footer>
+
+        <p>&copy; 2026 My Website | All Rights Reserved</p>
+
+    </footer>
+
+</div>
+
+</body>
+</html>

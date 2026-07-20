@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML5 Layout</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f4f4;
+        }
+
+        .container{
+            width:1000px;
+            margin:20px auto;
+            border:2px solid #333;
+            background:#fff;
+        }
+
+        header{
+            background:#2c3e50;
+            color:#fff;
+            padding:20px;
+            text-align:center;
+        }
+
+        nav{
+            background:#34495e;
+            padding:10px;
+        }
+
+        nav ul{
+            list-style:none;
+        }
+
+        nav ul li{
+            display:inline-block;
+            margin-right:20px;
+        }
+
+        nav ul li a{
+            color:white;
+            text-decoration:none;
+        }
+
+        .content{
+            display:flex;
+        }
+
+        aside{
+            width:250px;
+            background:#dfe6e9;
+            padding:20px;
+        }
+
+        aside ul{
+            list-style:none;
+            margin-top:15px;
+        }
+
+        aside ul li{
+            margin-bottom:10px;
+        }
+
+        aside a{
+            text-decoration:none;
+            color:#2c3e50;
+        }
+
+        main{
+            width:750px;
+            padding:20px;
+        }
+
+        article{
+            margin-bottom:20px;
+            padding:15px;
+            border:1px solid #ccc;
+        }
+
+        section{
+            margin-top:20px;
+        }
+
+        footer{
+            background:#2c3e50;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>My Website</h1>
+        <p>HTML5 Semantic Layout Example</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+
+        <aside>
+
+            <h2>Sidebar</h2>
+
+            <ul>
+                <li><a href="#">HTML Tutorial</a></li>
+                <li><a href="#">CSS Tutorial</a></li>
+                <li><a href="#">JavaScript Tutorial</a></li>
+                <li><a href="#">Bootstrap</a></li>
+                <li><a href="#">React</a></li>
+            </ul>
+
+        </aside>
+
+        <main>
+
+            <article>
+
+                <h2>Welcome</h2>
+
+                <p>
+                    This is the main content area of the webpage.
+                    The <strong>main</strong> tag contains the primary
+                    information of the page.
+                </p>
+
+            </article>
+
+            <section>
+
+                <h2>Latest News</h2>
+
+                <p>
+                    HTML5 introduced semantic elements such as
+                    header, nav, main, article, section, aside,
+                    and footer to improve webpage structure.
+                </p>
+
+            </section>
+
+            <section>
+
+                <h2>Upcoming Events</h2>
+
+                <ul>
+                    <li>HTML Workshop</li>
+                    <li>CSS Seminar</li>
+                    <li>JavaScript Bootcamp</li>
+                </ul>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <footer>
+
+        <p>
+            &copy; 2026 My Website | All Rights Reserved
+        </p>
+
+    </footer>
+
+</div>
+
+</body>
+</html>
