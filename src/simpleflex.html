@@ -1,92 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-<style>
-    #container {
-        width: 1000px;
-        border: 1px solid rgb(208, 208, 231);
-        padding: 20px;
-        align-items: center;
-        margin-left: 25%;
-        background-color: beige;
-        height: 900px;
-
-         display: flex; 
-
-
-
-    }
-
-    #firstbox {
-        background-color: rgb(105, 170, 192);
-        color: black;
-        padding: 40px;
-        text-align: center;
-        width: 500px;
-        height: 200px;
-        margin: 5px;
-
-    }
-
-    #secondbox {
-
-        background-color: rgb(102, 168, 148);
-        color: black;
-        padding: 40px;
-        text-align: center;
-        width: 500px;
-        height: 200px;
-        margin: 5px;
-    }
-
-    #thirdbox {
-        background-color: rgb(204, 170, 190);
-        color: black;
-        padding: 40px;
-        text-align: center;
-        width: 500px;
-        height: 200px;
-        margin: 5px;
-    }
-
-    #fourthbox {
-        background-color: rgb(170, 204, 170);
-        color: black;
-        padding: 40px;
-        text-align: center;
-        width: 500px;
-        height: 200px;
-        margin: 5px;
-    }
-
-    #fifthbox {
-
-        background-color: rgb(170, 199, 204);
-        color: black;
-        padding: 40px;
-        text-align: center;
-        width: 500px;
-        height: 200px;
-        margin: 5px;
-    }
-</style>
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+<style>
+body {
+  background-color:#E7E9EB;
+}
+#myDIV {
+  width:200px;
+  height:300px;
+  background-color:#FFFFFF;
+  padding:10px;
+ 
+}
+#mymain {
+  width:100%;
+  height: 100px;
+  /* display: flex;
+  flex-wrap: wrap; */
+}
+#mymain div{
+margin:5px;
+padding: 5px;
+}
+</style>
 </head>
-
 <body>
-    <div id="container">
-        <!---thses divs are inside the containre thats why the become flexy-->
-        <div id="firstbox">A quick brown fox jumps over the lazy dog</div>
-        <div id="secondbox">A quick brown fox jumps over the lazy dog</div>
-        <div id="thirdbox">A quick brown fox jumps over the lazy dog</div>
-        <div id="fourthbox">A quick brown fox jumps over the lazy dog</div>
-        <div id="fifthbox">A quick brown fox jumps over the lazy dog</div>
-         <div id="sixthbox">A quick brown fox jumps over the lazy dog</div>
 
-    </div>
+<h1>The flex-grow property</h1>
+
+<div id="myDIV">
+<div id="mymain">
+  <div style="background-color:coral;">red div</div>
+  <div style="background-color:lightblue;">blue div</div>
+  <div style="background-color:khaki;">yellow div</div>
+  <div style="background-color:pink;">pink div</div>
+  <div style="background-color:pink;">pink div</div>
+  <div style="background-color:pink;">pink div</div>
+</div>
+</div>
+
 </body>
-
 </html>
