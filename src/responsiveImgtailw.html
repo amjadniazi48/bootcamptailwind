@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image with Tailwind CSS</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-5 font-sans">
+
+    <div class="max-w-5xl mx-auto bg-white p-5 rounded-lg shadow-md">
+
+        <!-- Responsive Flex Container -->
+        <div class="flex flex-col md:flex-row gap-5">
+
+            <!-- Image -->
+            <div class="md:w-1/2">
+                <img
+                    src="/src/images/pexels-alena-berdus-2160780142-38480420.jpg"
+                    alt="Responsive Image"
+                    class="w-full rounded-lg">
+            </div>
+
+            <!-- Text -->
+            <div class="md:w-1/2 bg-blue-200 md:bg-blue-200 bg-green-200 p-5 rounded-lg">
+
+                <h2 class="text-2xl font-bold mb-4">
+                    Responsive Web Design
+                </h2>
+
+                <p class="leading-7">
+                    On large screens, the image and text appear side by side.
+                    On screens smaller than 768px, they automatically stack
+                    one below the other. Resize the browser window to see
+                    the responsive behavior.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
