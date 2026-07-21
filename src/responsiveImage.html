@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Responsive Layout</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f4f4;
+    padding:20px;
+}
+
+.container{
+    width:80%;
+    margin:auto;
+    display:flex;
+    gap:20px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+.image{
+    flex:1;
+}
+
+.image img{
+    width:100%;
+    display:block;
+    border-radius:10px;
+}
+
+.text{
+    flex:1;
+    background:lightblue;
+    padding:20px;
+    border-radius:10px;
+}
+
+.text h2{
+    margin-bottom:15px;
+}
+
+.text p{
+    line-height:1.6;
+}
+
+/* Responsive Design */
+
+@media (max-width:768px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .text{
+        background:lightgreen;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="image">
+        <img src="/src/images/pexels-alena-berdus-2160780142-38480420.jpg" alt="">
+    </div>
+
+    <div class="text">
+        <h2>Responsive Web Design</h2>
+
+        <p>
+            On a desktop screen, the image and text appear side by side.
+            When the screen width becomes 768px or less, they automatically
+            stack one below the other.
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

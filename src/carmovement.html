@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    .car {
+      margin-top: 20px;
+      width: 80px;
+      height: 40px;
+      background: blue;
+      animation: moveCar 1s infinite alternate;
+    }
+    .car2 {
+      margin-top: 20px;
+      width: 80px;
+      height: 40px;
+      background: rgb(175, 23, 23);
+      animation: moveCar2 1s infinite alternate;
+    }
+
+    @keyframes moveCar {
+      from {
+        margin-left: 0;
+      }
+
+      to {
+        margin-left: 500px;
+      }
+    }
+    @keyframes moveCar2 {
+      from {
+        transform: translateX(500px);
+      }
+
+      to {
+        transform: translateX(0px);
+      }
+    }
+  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="mydiv">
+      <div class="car"></div>
+      <div class="car2"></div>
+    </div>
+  </body>
+</html>

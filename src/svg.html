@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ circle{
+    animation: bounce 2s infinite alternate;
+}
+
+/* @keyframes bounce{
+    from{
+        transform: translateY(0);
+    }
+
+    to{
+        transform: translateY(150px);
+    }
+} */
+ .light {
+    animation: changeColor 3s infinite;
+}
+
+@keyframes changeColor {
+
+    0% {
+        background: red;
+    }
+
+    50% {
+        background: yellow;
+    }
+
+    100% {
+        background: green;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<h2>Bouncing Ball (SVG)</h2>
+
+<svg width="200" height="200" style="border:1px solid black;">
+    <circle cx="100" cy="25" r="15" fill="red"/>
+</svg>
+
+</body>
+</html>
