@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>ShopFlow — Blog</title>
+</head>
+
+<body>
+
+    <!-- ============================================================
+         HEADER / NAVBAR (same on every page)
+
+         Mobile menu note: this uses the classic "checkbox hack" so the
+         menu works with ZERO JavaScript:
+           1. A hidden checkbox (#menu-toggle) holds the open/closed state.
+           2. The hamburger button is just a <label for="menu-toggle">,
+              so clicking it toggles the checkbox.
+           3. The mobile <nav> below uses Tailwind's `peer-checked:flex`
+              utility, which only applies when the checkbox (marked
+              `peer`) is checked. Pure CSS, no scripts needed.
+    ============================================================ -->
+    <header class="sticky top-0 z-50 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Hidden checkbox that stores whether the mobile menu is open -->
+            <input type="checkbox" id="menu-toggle" class="peer hidden">
+
+            <div class="flex items-center justify-between h-16">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="https://cdn.ln-cdn.com/image/placeholder-logo-full.png" class="h-8" alt="Logo">
+                </a>
+
+                <!-- Desktop Navigation: hidden on mobile, visible from "lg" breakpoint up -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Home</a>
+                    <a href="features.html" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Features</a>
+                    <a href="projects.html" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Projects</a>
+                    <a href="blog.html" class="text-sm font-medium text-indigo-600 transition-colors">Blog</a>
+                    <a href="contact.html" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Right side: CTA button (desktop) + hamburger label (mobile) -->
+                <div class="flex items-center gap-3">
+
+                    <a href="contact.html" class="hidden lg:inline-block px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-xl transition-all">
+                        Get Started
+                    </a>
+
+                    <!-- Hamburger button: a <label> linked to the checkbox above.
+                         Clicking it toggles the checkbox — no JS needed. -->
+                    <label for="menu-toggle"
+                        class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-slate-100 transition-colors cursor-pointer">
+                        <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Mobile menu: hidden by default. Tailwind's `peer-checked:flex`
+                 makes it appear only when #menu-toggle is checked. -->
+            <nav class="hidden peer-checked:flex lg:hidden flex-col gap-1 pb-4">
+                <a href="index.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">Home</a>
+                <a href="features.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">Features</a>
+                <a href="projects.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">Projects</a>
+                <a href="blog.html" class="px-3 py-2 rounded-lg text-sm font-medium text-indigo-600 bg-indigo-50 hover:bg-slate-50">Blog</a>
+                <a href="contact.html" class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">Contact</a>
+                <a href="contact.html" class="mt-2 px-3 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-xl text-center transition-all">
+                    Get Started
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         PAGE TITLE BANNER
+    ============================================================ -->
+    <section class="py-16 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-indigo-600 text-sm font-semibold tracking-wide uppercase mb-4 block">Our Blog</span>
+            <h1 class="text-4xl sm:text-5xl font-bold text-slate-900">Latest Articles</h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto mt-4">
+                Tips, guides, and stories from our team on design, development, and growth.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         BLOG POST GRID
+    ============================================================ -->
+    <section class="py-20 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Blog Card 1 -->
+                <article class="rounded-3xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=700&auto=format&fit=crop&q=80"
+                        alt="Team planning a design sprint" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-indigo-600 text-xs font-semibold uppercase tracking-wide">Design</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3">5 Principles of Great Web Design</h2>
+                        <p class="text-slate-600 text-sm mb-4">A look at the fundamentals every modern website should get right, from layout to typography.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 text-xs">June 12, 2026</span>
+                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:gap-3 inline-flex items-center gap-2 transition-all">
+                                Read More
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Card 2 -->
+                <article class="rounded-3xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=700&auto=format&fit=crop&q=80"
+                        alt="Developer writing code" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-indigo-600 text-xs font-semibold uppercase tracking-wide">Development</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3">Getting Started with Tailwind CSS 4</h2>
+                        <p class="text-slate-600 text-sm mb-4">Why utility-first CSS speeds up development and how the newest Tailwind release makes it even easier.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 text-xs">June 3, 2026</span>
+                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:gap-3 inline-flex items-center gap-2 transition-all">
+                                Read More
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Card 3 -->
+                <article class="rounded-3xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=700&auto=format&fit=crop&q=80"
+                        alt="Team celebrating a project launch" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-indigo-600 text-xs font-semibold uppercase tracking-wide">Growth</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3">How We Grew Client Retention by 40%</h2>
+                        <p class="text-slate-600 text-sm mb-4">A behind-the-scenes look at the process changes that made the biggest difference for our clients.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 text-xs">May 21, 2026</span>
+                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:gap-3 inline-flex items-center gap-2 transition-all">
+                                Read More
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Card 4 -->
+                <article class="rounded-3xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&auto=format&fit=crop&q=80"
+                        alt="Person sketching a brand logo" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-indigo-600 text-xs font-semibold uppercase tracking-wide">Branding</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3">Building a Brand Identity That Lasts</h2>
+                        <p class="text-slate-600 text-sm mb-4">What separates a logo from a full brand system, and why the difference matters for growth.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 text-xs">May 9, 2026</span>
+                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:gap-3 inline-flex items-center gap-2 transition-all">
+                                Read More
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Card 5 -->
+                <article class="rounded-3xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&auto=format&fit=crop&q=80"
+                        alt="Analytics dashboard on a laptop screen" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-indigo-600 text-xs font-semibold uppercase tracking-wide">Analytics</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3">Metrics Every Founder Should Track</h2>
+                        <p class="text-slate-600 text-sm mb-4">Cut through the noise with a short list of numbers that actually predict growth.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 text-xs">April 28, 2026</span>
+                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:gap-3 inline-flex items-center gap-2 transition-all">
+                                Read More
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Card 6 -->
+                <article class="rounded-3xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&auto=format&fit=crop&q=80"
+                        alt="Team meeting around a table" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-indigo-600 text-xs font-semibold uppercase tracking-wide">Culture</span>
+                        <h2 class="text-xl font-bold text-slate-900 mt-2 mb-3">What Makes Our Team Different</h2>
+                        <p class="text-slate-600 text-sm mb-4">A closer look at how we hire, collaborate, and support each client's project.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-400 text-xs">April 15, 2026</span>
+                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:gap-3 inline-flex items-center gap-2 transition-all">
+                                Read More
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER (same on every page)
+    ============================================================ -->
+    <footer class="bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-4 lg:px-5">
+
+            <div class="py-16 grid lg:grid-cols-12 gap-6 border-b border-slate-200">
+
+                <!-- Brand + short description -->
+                <div class="lg:col-span-4">
+                    <a href="index.html" class="flex items-center mb-6">
+                        <img src="https://cdn.ln-cdn.com/image/placeholder-logo-full.png" class="h-10" alt="Logo">
+                    </a>
+                    <p class="text-neutral-400 mb-8">Trusted by over 50,000 sellers worldwide. Join our growing community of successful entrepreneurs.</p>
+                </div>
+
+                <!-- Link Columns -->
+                <div class="lg:col-span-8 grid sm:grid-cols-3 gap-4">
+                    <div>
+                        <h4 class="text-white font-semibold mb-5">Pages</h4>
+                        <ul class="space-y-3">
+                            <li><a href="index.html" class="text-neutral-400 hover:text-indigo-500 transition-colors">Home</a></li>
+                            <li><a href="features.html" class="text-neutral-400 hover:text-indigo-500 transition-colors">Features</a></li>
+                            <li><a href="projects.html" class="text-neutral-400 hover:text-indigo-500 transition-colors">Projects</a></li>
+                            <li><a href="blog.html" class="text-neutral-400 hover:text-indigo-500 transition-colors">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-5">Sellers</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-neutral-400 hover:text-indigo-500 transition-colors">Start Selling</a></li>
+                            <li><a href="#" class="text-neutral-400 hover:text-indigo-500 transition-colors">Dashboard</a></li>
+                            <li><a href="#" class="text-neutral-400 hover:text-indigo-500 transition-colors">Analytics</a></li>
+                            <li><a href="#" class="text-neutral-400 hover:text-indigo-500 transition-colors">Academy</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-5">Support</h4>
+                        <ul class="space-y-3">
+                            <li><a href="contact.html" class="text-neutral-400 hover:text-indigo-500 transition-colors">Contact Us</a></li>
+                            <li><a href="#" class="text-neutral-400 hover:text-indigo-500 transition-colors">Help Center</a></li>
+                            <li><a href="#" class="text-neutral-400 hover:text-indigo-500 transition-colors">Returns</a></li>
+                            <li><a href="#" class="text-neutral-400 hover:text-indigo-500 transition-colors">Shipping</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom bar: copyright + legal links + social icons -->
+            <div class="py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p class="text-slate-400 text-sm">© 2026 ShopFlow. All rights reserved.</p>
+
+                <div class="flex items-center gap-3">
+                    <a href="#" class="text-slate-400 hover:text-indigo-500 text-sm transition-colors">Terms</a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-500 text-sm transition-colors">Privacy</a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-500 text-sm transition-colors">Cookies</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="#" class="w-9 h-9 flex items-center justify-center border border-slate-200 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white text-slate-500 transition-all" aria-label="Twitter">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center border border-slate-200 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white text-slate-500 transition-all" aria-label="Instagram">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 flex items-center justify-center border border-slate-200 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white text-slate-500 transition-all" aria-label="Facebook">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>
